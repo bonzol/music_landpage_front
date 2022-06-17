@@ -46,7 +46,8 @@
 #deleteSongButton {
   margin: 0;
   width: 100px;
-  align-self: center;
+  height: 100%;
+  padding: 0;
 }
 .songsInput > input {
   margin-right: 10px;
@@ -68,4 +69,9 @@ img {
 #addSong {
   margin-bottom: 20px;
   background-color: #01674d;
+}
+@media (max-width:450px) {
+  .songsInput > input {
+  width: 100%;
+}
 }
