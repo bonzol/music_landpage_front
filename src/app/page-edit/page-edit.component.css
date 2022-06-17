@@ -1,46 +1,49 @@
-
 ul {
-    background-color: transparent;
-    display: flex;
-    background-color: rgb(30, 30, 30);
-    border: none;
+  background-color: transparent;
+  display: flex;
+  background-color: rgb(30, 30, 30);
+  border: none;
 }
 li > a {
-    color: antiquewhite;
+  color: antiquewhite;
 }
 li.nav-item {
-    margin: 0;
-    text-align: center;    
-    flex-grow: 1;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
 }
 li.nav-item:hover {
-    background-color: rgb(91, 91, 91);
+  background-color: rgb(91, 91, 91);
 }
 .nav-link {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 0;
-    margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  margin: 0;
 }
 
 li.nav-item .nav-link.active {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 #logout {
-    color: black;
-    background-color:rgb(223, 74, 48);
+  color: black;
+  background-color: rgb(223, 74, 48);
 }
 #logout:hover {
-    color: rgb(223, 74, 48);
-    background-color:rgb(78, 76, 76);
+  color: rgb(223, 74, 48);
+  background-color: rgb(78, 76, 76);
 }
 
 .nav-pills .nav-link {
-    border-radius: 0;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
 }
 @media (max-width: 480px) {
-    .nav-link {
-        font-size: 0.7em;
-    }
+  .nav-link {
+    font-size: 0.7em;
+  }
 }
