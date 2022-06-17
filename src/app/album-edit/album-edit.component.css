@@ -1,0 +1,71 @@
+.album {
+  border: 1px solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btn {
+  margin-top: 20px;
+  width: 60%;
+  min-width: 100px;
+  max-width: 200px;
+  background-color: #6ba899;
+  border: none;
+}
+#saveButton,
+#addAlbumButton {
+  background-color: #01674d;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  max-width: 290px;
+  min-width: 130px;
+  width: 25vw;
+}
+#submitSongsButton {
+  background-color: #01674d;
+}
+#delete,
+#deleteSongButton {
+  background-color: tomato;
+  color: black;
+}
+#delete:hover,
+#deleteSongButton:hover {
+  background-color: rgb(159, 71, 56);
+  color: white;
+}
+#deleteSongButton {
+  margin: 0;
+  width: 100px;
+  align-self: center;
+}
+.songsInput > input {
+  margin-right: 10px;
+  width: 300px;
+}
+.btn:hover {
+  background-color: #95d3c4;
+  color: black;
+}
+#saveButton:hover,
+#addAlbumButton:hover, #addSong:hover, #submitSongsButton:hover {
+  background-color: #bfebe0;
+  color: black;
+}
+img {
+  width: 150px;
+  min-width: 100px;
+}
+#addSong {
+  margin-bottom: 20px;
+  background-color: #01674d;
+}

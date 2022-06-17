@@ -1,0 +1,207 @@
+<div class="all container-fluid">
+  <div class="addLink d-flex justify-content-center align-items-center">
+    <button
+      id="addLinkButton"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#newLinkModal"
+      class="btn btn-primary"
+    >
+      Add New Link
+    </button>
+  </div>
+  <div class="links">
+    <div
+      *ngFor="let l of links"
+      class="row link d-flex justify-content-center align-items-center"
+    >
+      <div class="col-8">
+        {{ l.title }}
+      </div>
+      <div class="col-2 d-flex justify-content-center align-items-center">
+        {{ l.company }}
+      </div>
+      <div class="col-11 col-sm-1 buttons">
+        <button
+          class="btn btn-primary"
+          (click)="addEditLink(l)"
+          data-bs-toggle="modal"
+          data-bs-target="#editLinkModal"
+        >
+          Edit
+        </button>
+        <button id="delete" class="btn btn-primary" (click)="deleteLink(l.id)">
+          Delete
+        </button>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center">
+      <button
+        id="saveButton"
+        type="button"
+        class="btn btn-primary"
+        (click)="saveChanges()"
+      >
+        Save Changes
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="newLinkModal"
+    tabindex="-1"
+    aria-labelledby="newLinkModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newLinkModalLabel">Add New Link</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form #newLinkForm="ngForm" (ngSubmit)="onNewLinkSubmit()" novalidate>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="linkTitleInput"
+                placeholder="title"
+                name="title"
+                [(ngModel)]="newLink.title"
+                required
+              />
+              <label for="floatingInput">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="linkLinkInput"
+                placeholder="text"
+                name="link"
+                [(ngModel)]="newLink.link"
+                required
+              />
+              <label for="floatingInput">Link</label>
+            </div>
+            <div class="col">
+              <select
+                class="form-select"
+                [(ngModel)]="newLink.company"
+                name="company"
+                aria-label="Default select example"
+              >
+                <!-- <option value="" disabled>Select Company</option> -->
+                <option value="other" selected>Select Company \ Other</option>
+                <option value="spotify">Spotify</option>
+                <option value="apple">Apple Music</option>
+                <option value="facebook">Facebook</option>
+                <option value="instagram">Instagram</option>
+                <option value="youtube">Youtube</option>
+              </select>
+            </div>
+          </div>
+
+          <div
+            class="modal-footer d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="submit"
+              [disabled]="newLinkForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Add Link
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="editLinkModal"
+    tabindex="-1"
+    aria-labelledby="editLinkModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newLinkModalLabel">Edit Link</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form #editLinkForm="ngForm" (ngSubmit)="onEditLinkSubmit()" novalidate>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="linkTitleInput"
+                placeholder="title"
+                name="title"
+                [(ngModel)]="link.title"
+                required
+              />
+              <label for="floatingInput">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="linkLinkInput"
+                placeholder="text"
+                name="link"
+                [(ngModel)]="link.link"
+                required
+              />
+              <label for="floatingInput">Link</label>
+            </div>
+            <div class="linkCompany col">
+              <select
+                class="form-select"
+                [(ngModel)]="link.company"
+                name="company"
+                aria-label="Default select example"
+              >
+                <option value="" selected disabled>Select Company</option>
+                <option value="spotify">Spotify</option>
+                <option value="apple">Apple Music</option>
+                <option value="facebook">Facebook</option>
+                <option value="instagram">Instagram</option>
+                <option value="youtube">Youtube</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div
+            class="modal-footer d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="submit"
+              [disabled]="editLinkForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Edit Link
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

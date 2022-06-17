@@ -1,0 +1,8 @@
+header, footer, main {
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    margin-bottom: 3%;
+}

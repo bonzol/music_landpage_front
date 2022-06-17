@@ -1,0 +1,146 @@
+<div class="signup">
+  <form
+    (ngSubmit)="onFormSubmit()"
+    id="sign"
+    [formGroup]="formSign"
+    class="px-4 py-3"
+    novalidate
+  >
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="emailReg"
+        placeholder="Email"
+        formControlName="emailReg"
+      />
+
+      <label for="emailReg">Email</label>
+      <div id="spinnerEmail" class="spinner-border disable" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div
+        *ngIf="
+          formSign.get('emailReg')!.touched && formSign.get('emailReg')!.invalid
+        "
+      >
+        <div
+          *ngIf="formSign.get('emailReg')!.errors!.required"
+          class="alert alert-danger"
+        >
+          Email can't be blank
+        </div>
+        <div
+          *ngIf="formSign.get('emailReg')!.errors!.emailAlreadyExists"
+          class="alert alert-danger"
+        >
+          Email is already in Use, Please choose another
+        </div>
+        <div
+          *ngIf="formSign.get('emailReg')!.errors!.email"
+          class="alert alert-danger"
+        >
+          Email must contain a valid email address
+        </div>
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="usernameReg"
+        placeholder="Username"
+        formControlName="usernameReg"
+      />
+      <label for="usernameReg">Username</label>
+      <div id="spinnerUsername" class="spinner-border disable" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div
+        *ngIf="
+          formSign.get('usernameReg')!.touched &&
+          formSign.get('usernameReg')!.invalid
+        "
+      >
+        <div
+          *ngIf="formSign.get('usernameReg')!.errors!.usernameAlreadyExists"
+          class="alert alert-danger"
+        >
+          User name already in Use, Please choose another
+        </div>
+        <div
+          *ngIf="formSign.get('usernameReg')!.errors!.required"
+          class="alert alert-danger"
+        >
+          User name can't be blank
+        </div>
+        <div
+          *ngIf="formSign.get('usernameReg')!.errors!.spaces"
+          class="alert alert-danger"
+        >
+          User name can't contain spaces
+        </div>
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control simple"
+        id="artistnameReg"
+        placeholder="Artistname"
+        formControlName="artistnameReg"
+      />
+      <label for="artistnameReg">Artist name</label>
+      <div
+        *ngIf="
+          formSign.get('artistnameReg')!.touched &&
+          formSign.get('artistnameReg')!.invalid
+        "
+      >
+        <div
+          *ngIf="formSign.get('artistnameReg')!.errors!.required"
+          class="alert alert-danger"
+        >
+          Artist name can't be blank
+        </div>
+      </div>
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control simple"
+        id="passwordReg"
+        placeholder="Password"
+        formControlName="passwordReg"
+      />
+      <label for="passwordReg">Password</label>
+      <div
+        *ngIf="
+          formSign.get('passwordReg')!.touched &&
+          formSign.get('passwordReg')!.invalid
+        "
+      >
+        <div
+          *ngIf="formSign.get('passwordReg')!.errors!.required"
+          class="alert alert-danger"
+        >
+          Password can't be blank
+        </div>
+        <div
+          *ngIf="formSign.get('passwordReg')!.errors!.minlength"
+          class="alert alert-danger"
+        >
+          Password must contain at least 6 characters
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="formSign.invalid"
+      id="signupButton"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+</div>

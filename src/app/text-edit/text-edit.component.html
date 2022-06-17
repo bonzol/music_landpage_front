@@ -1,0 +1,235 @@
+<div class="all container-fluid">
+  <div class="addText d-flex justify-content-center align-items-center">
+    <button
+      id="addTextButton"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#newTextModal"
+      class="btn btn-primary"
+    >
+      Add New Text
+    </button>
+  </div>
+  <div class="texts">
+    <div
+      *ngFor="let t of texts"
+      class="row text d-flex justify-content-center align-items-center"
+    >
+      <div class="col-8">
+        {{ t.paragraph }}
+      </div>
+      <div class="col-2 d-flex justify-content-center align-items-center">
+        {{ t.placement }}
+      </div>
+      <div class="col-11 col-sm-1 buttons">
+        <button
+          class="btn btn-primary"
+          (click)="addEditText(t)"
+          data-bs-toggle="modal"
+          data-bs-target="#editTextModal"
+        >
+          Edit
+        </button>
+        <button id="delete" class="btn btn-primary" (click)="deleteText(t.id)">
+          Delete
+        </button>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center">
+      <button
+        id="saveButton"
+        type="button"
+        class="btn btn-primary"
+        (click)="saveChanges()"
+      >
+        Save Changes
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="newTextModal"
+    tabindex="-1"
+    aria-labelledby="newTextModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newTextModalLabel">Add New Text</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form #newTextForm="ngForm" (ngSubmit)="onNewTextSubmit()" novalidate>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="textParagraphInput"
+                placeholder="text"
+                name="paragraph"
+                [(ngModel)]="newText.paragraph"
+                required
+              />
+              <label for="floatingInput">Your Text</label>
+            </div>
+            <div class="textPlace col">
+              <h5>Text Placement</h5>
+              <div class="form-check form-check-inline">
+                <input
+                  [(ngModel)]="newText.placement"
+                  value="start"
+                  class="form-check-input"
+                  type="radio"
+                  name="start"
+                  id="start"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Start
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  [(ngModel)]="newText.placement"
+                  value="middle"
+                  class="form-check-input"
+                  type="radio"
+                  name="middle"
+                  id="middle"
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Middle
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  [(ngModel)]="newText.placement"
+                  value="end"
+                  class="form-check-input"
+                  type="radio"
+                  name="end"
+                  id="end"
+                />
+                <label class="form-check-label" for="flexRadioDefault3">
+                  End
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="modal-footer d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="submit"
+              [disabled]="newTextForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Add Text
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="editTextModal"
+    tabindex="-1"
+    aria-labelledby="editTextModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newTextModalLabel">Edit Text</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form #editTextForm="ngForm" (ngSubmit)="onEditTextSubmit()" novalidate>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="textParagraphInput"
+                placeholder="text"
+                name="paragraph"
+                [(ngModel)]="text.paragraph"
+                required
+              />
+              <label for="floatingInput">Your Text</label>
+            </div>
+            <div class="textPlace col">
+              <h5>Text Placement</h5>
+              <div class="form-check form-check-inline">
+                <input
+                  [(ngModel)]="text.placement"
+                  value="start"
+                  class="form-check-input"
+                  type="radio"
+                  name="start"
+                  id="start"
+                />
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Start
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  [(ngModel)]="text.placement"
+                  value="middle"
+                  class="form-check-input"
+                  type="radio"
+                  name="middle"
+                  id="middle"
+                />
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Middle
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  [(ngModel)]="text.placement"
+                  value="end"
+                  class="form-check-input"
+                  type="radio"
+                  name="end"
+                  id="end"
+                />
+                <label class="form-check-label" for="flexRadioDefault3">
+                  End
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="modal-footer d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="submit"
+              [disabled]="editTextForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Edit Text
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

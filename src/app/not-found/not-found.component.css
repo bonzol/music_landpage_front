@@ -1,0 +1,15 @@
+.error {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.btn {
+  margin-top: 20px;
+  width: 60%;
+  min-width: 100px;
+  max-width: 200px;
+  background-color: #6ba899;
+  border: none;
+}

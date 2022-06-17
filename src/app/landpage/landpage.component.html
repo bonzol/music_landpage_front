@@ -1,0 +1,112 @@
+<div *ngIf="dataLoad; else loading">
+  <div class="allmain">
+    <header><app-header [profile]="profile"></app-header></header>
+    <div class="container">
+      <p *ngFor="let t of startTexts">{{ t }}</p>
+
+      <div *ngIf="isAlbumsExist" class="albums">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div
+              *ngFor="let a of albums; let i = index; first as isFirst"
+              [ngClass]="isFirst ? 'carousel-item active' : 'carousel-item'"
+            >
+              <a href="{{ a.link }}" onerror="this.href='brokenLink'" target="_blank">
+              
+                <div class="album">
+                  <div class="album-img">
+                    <img class="img-fluid" src="{{ a.img }}" onerror="this.src='./assets/default-album.png'" alt="" />
+                  </div>
+                  <div class="album-det">
+                    <div class="album-det-start">
+                      <p class="album-date">{{ a.displayDate }}</p>
+                      <p class="album-name">{{ a.title }}</p>
+                    </div>
+                    <div class="album-songs">
+                      <p *ngFor="let s of a.songs" class="album-song">
+                        {{ s.title }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div >
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+          </div>
+        </div>
+      </div>
+      <p class="middleTexts" *ngFor="let t of middleTexts">{{ t }}</p>
+
+      <div class="videos">
+        <div
+          id="carousel-videos"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+          style="overflow: hidden"
+        >
+          <div class="carousel-inner">
+            <div
+              *ngFor="let v of videosToDisplay; let i = index; first as isFirst"
+              [ngClass]="isFirst ? 'carousel-item active' : 'carousel-item'"
+            >
+              <iframe
+                width="560"
+                height="315"
+                [src]="'https://www.youtube.com/embed/' + v.source | safe"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="links">
+        <div *ngFor="let l of links" class="link">
+          <a href="{{ l.link }}" target="_blank">
+            <img class="link-img" src=".\assets\{{ l.company }}.png" alt="" />
+            <div class="link-div">
+              {{ l.title }}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="endTexts" *ngFor="let t of endTexts">{{ t }}</p>
+
+    <footer><app-footer></app-footer></footer>
+  </div>
+</div>
+
+<ng-template #loading
+  ><div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div></ng-template
+>

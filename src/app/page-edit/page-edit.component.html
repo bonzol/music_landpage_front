@@ -1,0 +1,125 @@
+<div class="all">
+  <ul class="nav nav-pills" role="tablist" id="pills-tab">
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="pills-profile-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-profile"
+        type="button"
+        role="tab"
+        aria-controls="pills-profile"
+        aria-selected="true"
+        >Profile</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="pills-albums-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-albums"
+        type="button"
+        role="tab"
+        aria-controls="pills-albums"
+        aria-selected="false"
+        >Albums</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="pills-videos-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-videos"
+        type="button"
+        role="tab"
+        aria-controls="pills-videos"
+        aria-selected="false"
+        >Videos</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="pills-texts-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-texts"
+        type="button"
+        role="tab"
+        aria-controls="pills-texts"
+        aria-selected="false"
+        >Texts</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="pills-links-tab"
+        data-bs-toggle="pill"
+        data-bs-target="#pills-links"
+        type="button"
+        role="tab"
+        aria-controls="pills-links"
+        aria-selected="false"
+        >Links</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" type="button" (click)="logout()" id="logout"
+        >Logout</a
+      >
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div
+      class="tab-pane fade show active"
+      id="pills-profile"
+      role="tabpanel"
+      aria-labelledby="pills-profile-tab"
+    >
+      <app-profile-edit *ngIf="loadData" [inputProfile]="profile"></app-profile-edit>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-albums"
+      role="tabpanel"
+      aria-labelledby="pills-albums-tab"
+    >
+      <app-album-edit *ngIf="loadData" [inputAlbums]="albums"></app-album-edit>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-videos"
+      role="tabpanel"
+      aria-labelledby="pills-videos-tab"
+    >
+      <app-video-edit *ngIf="loadData; else loading" [inputVideos]="videos"></app-video-edit>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-texts"
+      role="tabpanel"
+      aria-labelledby="pills-texts-tab"
+    >
+      <app-text-edit *ngIf="loadData; else loading" [inputTexts]="texts"></app-text-edit>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="pills-links"
+      role="tabpanel"
+      aria-labelledby="pills-links-tab"
+    >
+      <app-link-edit *ngIf="loadData; else loading" [inputLinks]="links"></app-link-edit>
+    </div>
+  </div>
+  <app-landpage *ngIf="loadData; else loading" [inputProfile]="profile"></app-landpage>
+</div>
+<ng-template #loading
+  ><div class="d-flex justify-content-center align-items-center flex-column" style="height: 80vh;">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Your Data is coming...</p>
+  </div></ng-template
+>

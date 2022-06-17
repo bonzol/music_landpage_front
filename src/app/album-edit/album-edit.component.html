@@ -1,0 +1,321 @@
+<div class="albums container-fluid">
+  <div class="addAlbum d-flex justify-content-center align-items-center">
+    <button
+      id="addAlbumButton"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#newAlbumModal"
+      class="btn btn-primary"
+    >
+      Add New Album
+    </button>
+  </div>
+  <div
+    *ngFor="let a of albums"
+    class="row album d-flex justify-content-center align-items-center"
+  >
+    <div class="img col">
+      <img
+        class="img-fluid"
+        src="{{ a.img }}"
+        onerror="this.src='./assets/default-album.png'"
+        alt=""
+      />
+    </div>
+    <div class="title col d-flex justify-content-center align-items-center">
+      {{ a.title }}
+    </div>
+    <div class="date col d-flex justify-content-center align-items-center">
+      {{ a.displayDate }}
+    </div>
+    <div class="songs col">
+      <div *ngFor="let s of a.songs" class="song">
+        {{ s.title }}
+      </div>
+      <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#songsModal"
+        (click)="editSongs(a)"
+      >
+        Edit Songs
+      </button>
+    </div>
+    <div class="buttons col">
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#albumModal"
+        (click)="addAlbumToModal(a.id)"
+        class="btn btn-primary"
+      >
+        Edit
+      </button>
+      <button
+        type="button"
+        id="delete"
+        class="btn btn-primary"
+        (click)="addDeletedAlbum(a.id)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center align-items-center">
+    <button
+      id="saveButton"
+      type="button"
+      class="btn btn-primary"
+      (click)="saveChanges()"
+    >
+      Save Changes
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="albumModal"
+  tabindex="-1"
+  aria-labelledby="editAlbuModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="albumModalLabel">Album Edit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form
+        #albumForm="ngForm"
+        (ngSubmit)="onAlbumSubmit(albumForm, album)"
+        novalidate
+      >
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="albumTitleInput"
+              placeholder="album"
+              name="title"
+              [(ngModel)]="album.title"
+              required
+            />
+            <label for="floatingInput">Album Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="albumImgInput"
+              placeholder="img"
+              name="img"
+              [(ngModel)]="album.img"
+              required
+            />
+            <label for="floatingInput">Album Image Link</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="albumLinkInput"
+              placeholder="link"
+              name="link"
+              [(ngModel)]="album.link"
+              required
+            />
+            <label for="floatingInput">Album Link</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="albumDateInput"
+              placeholder="date"
+              name="date"
+              ngModel
+              [valueAsDate]="album.date"
+            />
+            <label for="floatingInput">Album Date</label>
+          </div>
+        </div>
+        <div
+          class="modal-footer d-flex justify-content-center align-items-center"
+        >
+          <button
+            type="submit"
+            [disabled]="albumForm.invalid"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="newAlbumModal"
+  tabindex="-1"
+  aria-labelledby="newAlbumModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newAlbumModalLabel">Add New Album</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form #newAlbumForm="ngForm" (ngSubmit)="onNewAlbumSubmit()" novalidate>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="albumTitleInput"
+              placeholder="album"
+              name="title"
+              [(ngModel)]="newAlbum.title"
+              required
+            />
+            <label for="floatingInput">Album Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="albumImgInput"
+              placeholder="img"
+              name="img"
+              [(ngModel)]="newAlbum.img"
+              required
+            />
+            <label for="floatingInput">Album Image</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="albumLinkInput"
+              placeholder="link"
+              name="link"
+              [(ngModel)]="newAlbum.link"
+              required
+            />
+            <label for="floatingInput">Album Link</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="date"
+              class="form-control"
+              id="albumDateInput"
+              placeholder="date"
+              name="date"
+              [(ngModel)]="newAlbum.date"
+              required
+            />
+            <label for="floatingInput">Album Date</label>
+          </div>
+        </div>
+        <div
+          class="modal-footer d-flex justify-content-center align-items-center"
+        >
+          <button
+            type="submit"
+            [disabled]="newAlbumForm.invalid"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Add Album
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="songsModal"
+  tabindex="-1"
+  aria-labelledby="songsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="songsModalLabel">Album Songs</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form #songsForm="ngForm" (ngSubmit)="onSongsSubmit()" novalidate>
+        <div
+          class="modal-body d-flex flex-column justify-content-center align-items-center"
+        >
+          <button
+            type="button"
+            id="addSong"
+            class="btn btn-primary"
+            (click)="addNewSong()"
+          >
+            Add New Song
+          </button>
+          <div
+            *ngFor="let s of songs"
+            class="form-floating mb-3 songsInput d-flex"
+          >
+            <input
+              type="text"
+              class="form-control"
+              id="{{ s.title }}"
+              placeholder="song"
+              name="{{ s.title }}"
+              [(ngModel)]="s.title"
+              required
+              [ngModelOptions]="{ standalone: true }"
+            />
+            <label for="floatingInput">Song Name</label>
+            <div>
+
+              <button type="button" id="deleteSongButton" class="btn btn-primary" (click)="deleteSongFromForm(s)">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal-footer d-flex justify-content-center align-items-center"
+        >
+          <button
+            id="submitSongsButton"
+            type="submit"
+            [disabled]="songsForm.invalid"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Submit Songs
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

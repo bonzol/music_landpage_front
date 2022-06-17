@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 10px;
+    margin-bottom: -10px; */
+}
+#eng {
+    font-family: 'Shadows Into Light', 'M PLUS Rounded 1c', cursive;
+    font-weight:300;
+    font-style:normal;
+    font-size: 2em;
+}
+#heb {
+    font-family: 'Secular One', sans-serif;
+    font-weight:500;
+    font-size: 2em;
+}
+p {
+    margin-top: 10px;
+}

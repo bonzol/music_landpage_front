@@ -1,0 +1,207 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="link col">
+      <h5>My Page</h5>
+      {{ link }}
+      <a class="btn btn-primary" href="{{ link }}" target="_blank"> Open </a>
+    </div>
+    <div class="username col">
+      <h5>User name</h5>
+      {{ username }}
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#userNameModal"
+      >
+        Edit
+      </button>
+    </div>
+    <div class="artistname col">
+      <h5>Artist name</h5>
+      {{ artistname }}
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#artistNameModal"
+      >
+        Edit
+      </button>
+    </div>
+    <div class="dateLang col">
+      <h5>Date Language</h5>
+      <div class="form-check">
+        <input
+        [(ngModel)]="lang"
+        value="eng"
+        class="form-check-input"
+        type="radio"
+        name="eng"
+        id="eng"
+        />
+        <label class="form-check-label" for="flexRadioDefault1">
+          English
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          [(ngModel)]="lang"
+          value="heb"
+          class="form-check-input"
+          type="radio"
+          name="heb"
+          id="heb"
+        />
+        <label class="form-check-label" for="flexRadioDefault2"> עברית </label>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <button
+      id="save"
+      type="button"
+      class="btn btn-primary"
+      (click)="saveChanges()"
+    >
+      Save Changes
+    </button>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="artistNameModal"
+  tabindex="-1"
+  aria-labelledby="artistNameModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="artistModalLabel">Artist Name Edit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form
+        #artistnameForm="ngForm"
+        (ngSubmit)="onArtistnameSubmit()"
+        ngNativeValidate
+      >
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="artistnameInput"
+              placeholder="Artistname"
+              name="artistname"
+              [ngModel]="artistname"
+              required
+            />
+            <label for="floatingInput">Artist name</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            [disabled]="artistnameForm.invalid"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+          >
+            Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="userNameModal"
+  tabindex="-1"
+  aria-labelledby="userNameModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userModalLabel">User Name Edit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          id="username"
+          [formGroup]="usernameForm"
+          (ngSubmit)="onUsernameSubmit()"
+          novalidate
+        >
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="usernameInput"
+              placeholder="User name"
+              formControlName="username"
+            />
+            <label for="floatingInput">User name</label>
+            <div
+              id="spinnerUsername"
+              class="spinner-border disable"
+              role="status"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <div
+              *ngIf="
+                usernameForm.get('username')!.touched &&
+                usernameForm.get('username')!.invalid
+              "
+            >
+              <div
+                *ngIf="
+                  usernameForm.get('username')!.errors!.usernameAlreadyExists
+                "
+                class="alert alert-danger"
+              >
+                User name already in Use, Please choose another
+              </div>
+              <div
+                *ngIf="usernameForm.get('username')!.errors!.required"
+                class="alert alert-danger"
+              >
+                User name can't be blank
+              </div>
+              <div
+                *ngIf="usernameForm.get('username')!.errors!.spaces"
+                class="alert alert-danger"
+              >
+                User name can't contain spaces
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              [disabled]="usernameForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Edit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

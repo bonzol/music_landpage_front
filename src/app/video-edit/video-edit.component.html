@@ -1,0 +1,179 @@
+<div class="all container-fluid">
+  <div class="addVideo d-flex justify-content-center align-items-center">
+    <button
+      id="addVideoButton"
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#newVideoModal"
+      class="btn btn-primary"
+    >
+      Add New Video
+    </button>
+  </div>
+  <div class="videos">
+    <div
+      *ngFor="let v of videos"
+      class="row video d-flex justify-content-center align-items-center"
+    >
+      <div class="col-8">
+        {{ v.source }}
+      </div>
+      <div class="col-2 d-flex justify-content-center align-items-center">
+        {{ v.title }}
+      </div>
+      <div class="col-11 col-sm-1 buttons">
+        <button
+          class="btn btn-primary"
+          (click)="addEditVideo(v)"
+          data-bs-toggle="modal"
+          data-bs-target="#editVideoModal"
+        >
+          Edit
+        </button>
+        <button id="delete" class="btn btn-primary" (click)="deleteVideo(v.id)">
+          Delete
+        </button>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center">
+      <button
+        id="saveButton"
+        type="button"
+        class="btn btn-primary"
+        (click)="saveChanges()"
+      >
+        Save Changes
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="newVideoModal"
+    tabindex="-1"
+    aria-labelledby="newVideoModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newVideoModalLabel">Add New Video</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form #newVideoForm="ngForm" (ngSubmit)="onNewVideoSubmit()" novalidate>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="videoSourceInput"
+                placeholder="text"
+                name="source"
+                [(ngModel)]="newVideo.source"
+                required
+              />
+              <label for="floatingInput">Your Youtbe Source</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="videoTitleInput"
+                placeholder="text"
+                name="title"
+                [(ngModel)]="newVideo.title"
+                required
+              />
+              <label for="floatingInput">Your Title</label>
+            </div>
+          </div>
+
+          <div
+            class="modal-footer d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="submit"
+              [disabled]="newVideoForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Add Video
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="editVideoModal"
+    tabindex="-1"
+    aria-labelledby="editVideoModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newVideoModalLabel">Edit Video</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <form
+          #editVideoForm="ngForm"
+          (ngSubmit)="onEditVideoSubmit()"
+          novalidate
+        >
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="videoSourceInput"
+                placeholder="text"
+                name="source"
+                [(ngModel)]="video.source"
+                required
+              />
+              <label for="floatingInput">Your Youtbe Source</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="videoTitleInput"
+                placeholder="text"
+                name="title"
+                [(ngModel)]="video.title"
+                required
+              />
+              <label for="floatingInput">Your Title</label>
+            </div>
+          </div>
+
+          <div
+            class="modal-footer d-flex justify-content-center align-items-center"
+          >
+            <button
+              type="submit"
+              [disabled]="editVideoForm.invalid"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Edit Video
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

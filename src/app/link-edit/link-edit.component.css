@@ -1,0 +1,60 @@
+.link {
+  border: 1px solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btn {
+  margin-top: 20px;
+  width: 60%;
+  min-width: 100px;
+  max-width: 200px;
+  background-color: #6ba899;
+  border: none;
+}
+#saveButton,
+#addLinkButton {
+  background-color: #01674d;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  max-width: 290px;
+  min-width: 130px;
+  width: 25vw;
+}
+#delete {
+  background-color: tomato;
+  color: black;
+}
+#delete:hover {
+  background-color: rgb(159, 71, 56);
+  color: white;
+}
+.btn:hover {
+  background-color: #95d3c4;
+  color: black;
+}
+#saveButton:hover,
+#addLinkButton:hover {
+  background-color: #bfebe0;
+  color: black;
+}
+@media (max-width: 575px) {
+  .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+  }
+  .buttons > .btn {
+    width: 25vw;
+  }
+}

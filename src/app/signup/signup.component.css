@@ -1,0 +1,54 @@
+.spinner-border {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+.disable {
+  display: none;
+}
+.form-control.ng-touched.ng-valid {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+.form-control.ng-touched.ng-invalid {
+  background-color: #e38888;
+  border-color: #dd6161;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+h1 {
+  font-family: "Secular One", sans-serif;
+  font-weight: 500;
+  font-size: 2em;
+  text-align: center;
+}
+.text {
+  text-align: center;
+  margin-top: 10px;
+}
+form {
+  width: 100vw;
+  max-width: 500px;
+}
+
+#signupButton {
+  margin-top: 15px;
+  width: 100%;
+  background-color: #59857a;
+  border: none;
+}
+
+a {
+  color: black;
+}

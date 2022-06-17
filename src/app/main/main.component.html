@@ -1,0 +1,71 @@
+<div class="allmain">
+  <div class="header">
+    <br />
+    <h1>Music Land Page</h1>
+  </div>
+
+  <div class="contianer">
+    <div class="text">
+      <p>Welcome to the Music landpgae website</p>
+    </div>
+
+    <div class="login">
+      <form id="log" class="px-4 py-3" ngNativeValidate>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+            name="email"
+            [(ngModel)]="email"
+            required
+          />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            name="password"
+            [(ngModel)]="password"
+            required
+          />
+          <label for="password">Password</label>
+        </div>
+        <div *ngIf="error" class="alert alert-danger">
+          {{error}}
+        </div>
+        <button
+          type="submit"
+          id="loginButton"
+          class="btn btn-primary"
+          (click)="login()"
+        >
+          Login
+        </button>
+      </form>
+      <div>
+        <span>
+          New here?
+          <a
+            routerLinkActive="active-link"
+            style="width: fit-content"
+            data-bs-toggle="collapse"
+            href="#collapseSignup"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseSignup"
+            >Sign Up</a
+          >
+        </span>
+      </div>
+
+      <div class="collapse" id="collapseSignup">
+        <app-signup></app-signup>
+      </div>
+    </div>
+  </div>
+</div>
