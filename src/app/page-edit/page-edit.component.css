@@ -36,7 +36,9 @@ li.nav-item .nav-link.active {
     background-color:rgb(78, 76, 76);
 }
 
-
+.nav-pills .nav-link {
+    border-radius: 0;
+}
 @media (max-width: 480px) {
     .nav-link {
         font-size: 0.7em;
