@@ -28,7 +28,11 @@ export class MainComponent implements OnInit {
         localStorage.clear();
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('username', data.username);
-        this.router.navigate(['/' + data.username + '/edit']);
+        if(data.admin === true) {
+          this.router.navigate(['/' + data.username + '/admin']);
+        } else {
+          this.router.navigate(['/' + data.username + '/edit']);
+        }
       },
       (err) => {
         this.error = err.error.text;

@@ -19,6 +19,7 @@ import { LinkEditComponent } from './link-edit/link-edit.component';
 import { SignupComponent } from './signup/signup.component';
 import { DateConverter } from './util/DateConverter';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AdminEditComponent } from './admin-edit/admin-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     LinkEditComponent,
     SignupComponent,
     NotFoundComponent,
+    AdminEditComponent,
   ],
   imports: [
     BrowserModule,
