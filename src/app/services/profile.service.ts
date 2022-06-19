@@ -17,9 +17,12 @@ export class ProfileService {
   options = { headers: this.theHeaders };
 
   public getArtist(): Observable<any> {
+    let token = localStorage.getItem('token');
+    let theHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let options = { headers: theHeaders };
     let ObservableOfMe: Observable<any> = this.httpClient.get<any>(
       this.API_URL + '/artist',
-      this.options
+      options
     );
     return ObservableOfMe;
   }

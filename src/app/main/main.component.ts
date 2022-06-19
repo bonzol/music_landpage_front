@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
         localStorage.clear();
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('username', data.username);
-        if(data.admin === true) {
+        if (data.admin === true) {
           this.router.navigate(['/' + data.username + '/admin']);
         } else {
           this.router.navigate(['/' + data.username + '/edit']);
@@ -40,7 +40,4 @@ export class MainComponent implements OnInit {
       }
     );
   }
-
- 
 }
-
