@@ -49,3 +49,11 @@
 .artist {
     border-bottom: 1px solid;
 }
+.headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#logout {
+    width: 70px;
+}

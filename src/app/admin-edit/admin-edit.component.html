@@ -1,21 +1,34 @@
 <div class="all">
-    <br>
+  <br />
   <div class="container">
-    <div class="artists ">
+    <div class="artists">
+      <div class="headers">
         <h3>All Artists</h3>
+        <button type="button" id="logout" class="btn btn-primary" (click)="logout()">
+          Logout
+        </button>
+      </div>
       <div *ngFor="let a of artists" class="artist row">
-        <div class="userName col d-flex justify-content-center align-items-center">
+        <div
+          class="userName col d-flex justify-content-center align-items-center"
+        >
           {{ a.username }}
         </div>
-        <div class="artistName col d-flex justify-content-center align-items-center">
+        <div
+          class="artistName col d-flex justify-content-center align-items-center"
+        >
           {{ a.artistname }}
         </div>
         <div class="email col d-flex justify-content-center align-items-center">
           {{ a.email }}
         </div>
         <div class="buttons col">
-          <button type="button" id="edit" class="btn btn-primary">Edit</button>
-          <button type="button" id="delete" class="btn btn-primary">
+          <button
+            type="button"
+            id="delete"
+            class="btn btn-primary"
+            (click)="deleteArtist(a.id)"
+          >
             Delete
           </button>
         </div>

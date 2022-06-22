@@ -19,4 +19,14 @@ export class AdminService {
     );
     return ObservableOfMe;
   }
+  public deleteArtist(id:string): Observable<any> {
+    let token = localStorage.getItem('token');
+    let theHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let options = { headers: theHeaders };
+    let ObservableOfMe: Observable<any> = this.httpClient.delete<any>(
+      this.API_URL + '/artists/delete-artist/'+id,
+      options
+    );
+    return ObservableOfMe;
+  }
 }

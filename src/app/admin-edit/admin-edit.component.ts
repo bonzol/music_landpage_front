@@ -30,4 +30,20 @@ export class AdminEditComponent implements OnInit {
       }
     );
   }
+
+  deleteArtist(id: string) {
+    this.adminService.deleteArtist(id).subscribe(
+      () => {
+        window.location.reload();
+      },
+      (err) => {
+        console.log(err.error);
+      }
+    );
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['']);
+  }
 }

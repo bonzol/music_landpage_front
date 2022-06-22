@@ -3,4 +3,5 @@ export interface Profile {
   artistname: string;
   lang: string;
   email: string;
+  id: string;
 }
