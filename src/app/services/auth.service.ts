@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   API_URL = 'https://musiclandpage-server.herokuapp.com/auth';
-  // API_URL = 'http://localhost:3000/auth';
 
   constructor(private httpClient: HttpClient) {}
 

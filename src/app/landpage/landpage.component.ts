@@ -25,7 +25,7 @@ export class LandpageComponent implements OnInit {
   videos: Video[] = [];
   videosToDisplay: Video[] = [];
   albums: Album[] = [];
-  profile: Profile = { artistname: '', username: '', lang: '' };
+  profile: Profile = { artistname: '', username: '', lang: '', email:'' };
   links: Link[] = [];
   startTexts: string[] = [];
   middleTexts: string[] = [];

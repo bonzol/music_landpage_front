@@ -20,7 +20,7 @@ export class VideoEditComponent implements OnInit {
   video: Video = { id: '', source: '', title: '' };
 
   ngOnInit(): void {
-    this.videos = this.inputVideos;    
+    this.videos = this.inputVideos;
   }
   addEditVideo(video: any) {
     this.video = video;
@@ -50,7 +50,7 @@ export class VideoEditComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log(data);
-          this.router.navigate(['/']);
+          window.location.reload();
         },
         (err) => {
           console.log(err.error);

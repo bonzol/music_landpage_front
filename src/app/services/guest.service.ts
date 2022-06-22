@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class GuestService {
   API_URL = 'https://musiclandpage-server.herokuapp.com/';
-  // API_URL = 'http://localhost:3000/'
 
   constructor(private httpClient: HttpClient) {}
 

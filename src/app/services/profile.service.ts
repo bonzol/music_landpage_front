@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Album } from '../models/album';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,6 @@ export class ProfileService {
   constructor(private httpClient: HttpClient) {}
 
   API_URL = 'https://musiclandpage-server.herokuapp.com/artist';
-  // API_URL = 'http://localhost:3000/artist';
 
   token = localStorage.getItem('token');
   theHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);

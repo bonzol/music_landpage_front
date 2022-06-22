@@ -49,7 +49,7 @@ export class LinkEditComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log(data);
-          this.router.navigate(['/']);
+          window.location.reload();
         },
         (err) => {
           console.log(err.error);

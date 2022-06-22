@@ -97,7 +97,7 @@ export class ProfileEditComponent implements OnInit {
       .editArtist(this.username, this.artistname, this.lang)
       .subscribe(
         () => {
-          this.router.navigate(['/']);
+          window.location.reload();
         },
         (err) => {
           console.log(err);
