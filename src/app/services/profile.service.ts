@@ -10,14 +10,8 @@ export class ProfileService {
 
   API_URL = 'https://musiclandpage-server.herokuapp.com/artist';
 
-  token = localStorage.getItem('token');
-  theHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + this.token);
-  options = { headers: this.theHeaders };
-
   public getArtist(): Observable<any> {
-    let token = localStorage.getItem('token');
-    let theHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-    let options = { headers: theHeaders };
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.get<any>(
       this.API_URL + '/artist',
       options
@@ -29,66 +23,83 @@ export class ProfileService {
     artistname: string,
     lang: string
   ): Observable<any> {
+    let options = this.buildOptions();
     const artist = { username: username, artistname: artistname, lang: lang };
     let ObservableOfMe: Observable<any> = this.httpClient.put<any>(
       this.API_URL + '/edit-artist',
       artist,
-      this.options
+      options
     );
     return ObservableOfMe;
   }
   public getAlbums(): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.get<any>(
       this.API_URL + '/albums',
-      this.options
+      options
     );
     return ObservableOfMe;
   }
   public getTexts(): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.get<any>(
       this.API_URL + '/texts',
-      this.options
+      options
     );
     return ObservableOfMe;
   }
   public updateAlbums(updateAlbums: any): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.post<any>(
       this.API_URL + '/update-albums',
       updateAlbums,
-      this.options
+      options
     );
     return ObservableOfMe;
   }
+
   public updateTexts(updateTexts: any): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.post<any>(
       this.API_URL + '/update-texts',
       updateTexts,
-      this.options
+      options
     );
     return ObservableOfMe;
   }
   public updateVideos(updateVideos: any): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.post<any>(
       this.API_URL + '/update-videos',
       updateVideos,
-      this.options
+      options
     );
     return ObservableOfMe;
   }
   public updateLinks(updateLinks: any): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.post<any>(
       this.API_URL + '/update-links',
       updateLinks,
-      this.options
+      options
     );
     return ObservableOfMe;
   }
   public deleteAlbums(deletedAlbums: string[]): Observable<any> {
+    let options = this.buildOptions();
     let ObservableOfMe: Observable<any> = this.httpClient.post<any>(
       this.API_URL + '/delete-albums',
       deletedAlbums,
-      this.options
+      options
     );
     return ObservableOfMe;
+  }
+  public buildOptions() {
+    const token = localStorage.getItem('token');
+    const theHeaders = new HttpHeaders().set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return { headers: theHeaders };
   }
 }
