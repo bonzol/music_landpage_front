@@ -21,7 +21,6 @@ export class AdminEditComponent implements OnInit {
   getArtists() {
     this.adminService.getArtists().subscribe(
       (data) => {
-        console.log(data);
         this.artists = data;
         this.dataLoad = true;
       },
